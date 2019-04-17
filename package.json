@@ -1,0 +1,11 @@
+{
+  "name": "quiz",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/gagpmr/quiz.git",
+  "author": "gagpmr <absolutely2great@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "concurrently": "^4.1.0"
+  }
+}
