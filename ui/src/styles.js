@@ -24,8 +24,6 @@ export default () =>
       color: colors.text
     },
     "#root": {
-      display: "flex",
-      flexDirection: "column",
       minHeight: "100%"
     },
     "*": {
