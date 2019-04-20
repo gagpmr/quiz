@@ -1,6 +1,8 @@
 import { keyframes } from "@emotion/core";
 import styled from "@emotion/styled";
+import withStyles from "@material-ui/core/styles/withStyles";
 import { size } from "polished";
+import React from "react";
 import { ReactComponent as Logo } from "../assets/logo.svg";
 import { colors } from "../styles";
 
@@ -10,7 +12,7 @@ const spin = keyframes`
   }
 `;
 
-const Loading = styled(Logo)(size(64), {
+const StyledLogo = styled(Logo)(size(100), {
   display: "block",
   margin: "auto",
   fill: colors.grey,
@@ -20,4 +22,23 @@ const Loading = styled(Logo)(size(64), {
   }
 });
 
-export default Loading;
+const styles = () => ({
+  main: {
+    display: "flex",
+    position: "absolute",
+    width: "100%",
+    height: "100%",
+    alignItems: "center"
+  }
+});
+
+const Loading = props => {
+  const { classes } = props;
+  return (
+    <main className={classes.main}>
+      <StyledLogo />;
+    </main>
+  );
+};
+
+export default withStyles(styles)(Loading);
