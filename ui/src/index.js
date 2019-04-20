@@ -5,7 +5,7 @@ import gql from "graphql-tag";
 import React from "react";
 import { ApolloProvider, Query } from "react-apollo";
 import ReactDOM from "react-dom";
-import Loading from "./components/loading";
+import { LoginForm } from "./components/index";
 import Pages from "./pages";
 import { typeDefs } from "./resolvers";
 import injectStyles from "./styles";
@@ -37,7 +37,9 @@ const IS_LOGGED_IN = gql`
 injectStyles();
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <Query query={IS_LOGGED_IN}>{({ data }) => (data.isLoggedIn ? <Pages /> : <Loading />)}</Query>
+    <Query query={IS_LOGGED_IN}>
+      {({ data }) => (data.isLoggedIn ? <Pages /> : <LoginForm />)}
+    </Query>
   </ApolloProvider>,
   document.getElementById("root")
 );

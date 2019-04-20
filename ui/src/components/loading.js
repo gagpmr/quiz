@@ -1,5 +1,6 @@
 import { keyframes } from "@emotion/core";
 import styled from "@emotion/styled";
+import CssBaseline from "@material-ui/core/CssBaseline";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { size } from "polished";
 import React from "react";
@@ -36,6 +37,7 @@ const Loading = props => {
   const { classes } = props;
   return (
     <main className={classes.main}>
+      <CssBaseline />
       <StyledLogo />;
     </main>
   );
