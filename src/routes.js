@@ -1,7 +1,13 @@
+import { Router } from "@reach/router";
 import React from "react";
+import Home from "./pages/home";
 
-function App() {
-  return <div>Hello From Gagan</div>;
-}
+const Routes = () => {
+  return (
+    <Router>
+      <Home path="/" />
+    </Router>
+  );
+};
 
-export default App;
+export default Routes;
