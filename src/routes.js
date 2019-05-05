@@ -2,6 +2,7 @@ import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
 import { Router } from "@reach/router";
 import React from "react";
 import Driving from "./pages/driving";
+import DrivingAdd from "./pages/driving-add";
 import Home from "./pages/home";
 
 const theme = createMuiTheme({
@@ -17,6 +18,7 @@ const Routes = () => {
       <Router>
         <Home path="/" />
         <Driving path="driving" />
+        <DrivingAdd path="/driving-add" />
       </Router>
     </MuiThemeProvider>
   );
