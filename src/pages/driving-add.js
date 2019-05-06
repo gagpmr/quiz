@@ -4,6 +4,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import React from "react";
+import { updateField } from "../data/appState";
 
 const styles = theme => ({
   main: {
@@ -55,7 +56,11 @@ const Home = ({ classes }) => {
             </Typography>
           </Box>
           <Box order={2} className={classes.qabody}>
-            <TextField id="standard-bare" className={classes.textField} />
+            <TextField
+              id="answer"
+              className={classes.textField}
+              onChange={e => updateField("driving_add_answer", e.target.value)}
+            />
           </Box>
         </Box>
       </div>
