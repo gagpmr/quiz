@@ -46,7 +46,11 @@ const Home = ({ classes }) => {
             </Typography>
           </Box>
           <Box order={2} className={classes.qabody}>
-            <TextField id="standard-bare" className={classes.textField} />
+            <TextField
+              id="answer"
+              className={classes.textField}
+              onChange={e => updateField("driving_add_question", e.target.value)}
+            />
           </Box>
         </Box>
         <Box display="flex" flexWrap="wrap" flexDirection="row">
