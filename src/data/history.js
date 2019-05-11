@@ -1,18 +1,19 @@
 import PouchDB from "pouchdb";
 import PouchDBFind from "pouchdb-find";
 import PouchDBUpsert from "pouchdb-upsert";
-var remoteCouch = "http://gagpmr:claudemonet@localhost:5984/history";
+var remote = "http://gagpmr:claudemonet@localhost:5984/history";
 PouchDB.plugin(PouchDBFind);
 PouchDB.plugin(PouchDBUpsert);
 
 const history = PouchDB("history");
+
 history.createIndex({
   index: { fields: ["field"] }
 });
 
 const sync = () => {
   return history
-    .sync(remoteCouch, {
+    .sync(remote, {
       live: true,
       retry: true
     })
@@ -45,7 +46,6 @@ export const add = item => {
   const def = getDefault();
   def.question = item.question;
   def.answer = item.answer;
-  console.log(def);
   return history
     .put(def)
     .then(response => {
@@ -59,13 +59,23 @@ export const add = item => {
 };
 
 export const all = () => {
-  return history
-    .allDocs({ include_docs: true, descending: true })
-    .then(response => {
-      console.log(response);
+  let rows = [];
+  history
+    .sync(remote, {
+      live: true,
+      retry: true
     })
-    .catch(function(err) {
-      console.log("Error while getting all - History");
-      console.log(err);
+    .on("paused", info => {
+      history
+        .allDocs({ include_docs: true, descending: true })
+        .then(response => {
+          response.rows.shift();
+          rows = response.rows;
+        })
+        .catch(err => {
+          console.log("Error while getting all - History");
+          console.log(err);
+        });
     });
+  return rows;
 };

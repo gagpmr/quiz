@@ -41,6 +41,8 @@ const styles = theme => ({
 });
 
 const History = ({ classes }) => {
+  const questions = all();
+  console.log(questions);
   return (
     <main className={classes.main}>
       <CssBaseline />
@@ -55,8 +57,8 @@ const History = ({ classes }) => {
             <RouterLink to="/history-add" className={classes.link}>
               <AddCircleOutlineIcon className={classes.icon} />
             </RouterLink>
+            <AddCircleOutlineIcon className={classes.icon} />
           </div>
-          {all}
         </Box>
       </div>
     </main>
