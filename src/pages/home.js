@@ -49,8 +49,8 @@ const Home = ({ classes }) => {
         </Box>
         <Box display="flex">
           <div className={classes.item}>
-            <RouterLink to="driving" className={classes.link}>
-              Driving
+            <RouterLink to="history" className={classes.link}>
+              History
             </RouterLink>
           </div>
         </Box>

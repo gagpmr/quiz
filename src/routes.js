@@ -1,26 +1,39 @@
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
 import { Router } from "@reach/router";
 import React from "react";
-import Driving from "./pages/driving";
-import DrivingAdd from "./pages/driving-add";
+import { Provider } from "react-redux";
+import { combineReducers, createStore } from "redux";
+import { reducer as reduxFormReducer } from "redux-form";
+import History from "./pages/history";
+import HistoryAdd from "./pages/history-add";
 import Home from "./pages/home";
 
 const theme = createMuiTheme({
   typography: {
-    // In Japanese the characters are usually larger.
-    fontSize: 16
+    fontSize: 16,
+    useNextVariants: true
   }
 });
 
+const reducer = combineReducers({
+  form: reduxFormReducer
+});
+
+const store = (window.devToolsExtension
+  ? window.__REDUX_DEVTOOLS_EXTENSION__()(createStore)
+  : createStore)(reducer);
+
 const Routes = () => {
   return (
-    <MuiThemeProvider theme={theme}>
-      <Router>
-        <Home path="/" />
-        <Driving path="driving" />
-        <DrivingAdd path="/driving-add" />
-      </Router>
-    </MuiThemeProvider>
+    <Provider store={store}>
+      <MuiThemeProvider theme={theme}>
+        <Router>
+          <Home path="/" />
+          <History path="history" />
+          <HistoryAdd path="/history-add" />
+        </Router>
+      </MuiThemeProvider>
+    </Provider>
   );
 };
 
