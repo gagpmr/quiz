@@ -67,8 +67,8 @@ const renderTextField = ({ label, input, meta: { touched, invalid, error }, ...c
   />
 );
 
-const submitValues = values => {
-  add({ question: values.question, answer: values.answer });
+const submitValues = async values => {
+  await add({ question: values.question, answer: values.answer });
   navigate(`/history/`);
 };
 

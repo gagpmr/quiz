@@ -1,9 +1,4 @@
-import { unstable_Box as Box } from "@material-ui/core/Box";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import withStyles from "@material-ui/core/styles/withStyles";
-import Typography from "@material-ui/core/Typography";
-import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
-import { Link as RouterLink } from "@reach/router";
 import React from "react";
 import { all } from "../data/history";
 
@@ -25,11 +20,43 @@ const styles = theme => ({
     borderColor: "#DDDDDD",
     borderStyle: "solid",
     borderRadius: "8px",
-    padding: "2px",
-    width: "20%",
-    position: "absolute",
+    width: "100%",
+    position: "absolute"
+  },
+  itemQuestion: {
+    width: "70%",
+    borderWidth: "1px",
+    borderColor: "#DDDDDD",
+    borderStyle: "solid",
+    borderRadius: "8px"
+  },
+  itemAnswer: {
+    width: "10%",
+    borderWidth: "1px",
+    borderColor: "#DDDDDD",
+    borderStyle: "solid",
+    borderRadius: "8px",
     display: "flex",
     alignItems: "center"
+  },
+  itemActions: {
+    width: "20%",
+    borderWidth: "1px",
+    borderColor: "#DDDDDD",
+    borderStyle: "solid",
+    borderRadius: "8px",
+    display: "flex",
+    alignItems: "center"
+  },
+  itemOptions: {
+    borderWidth: "1px",
+    borderColor: "#DDDDDD",
+    borderStyle: "solid",
+    borderRadius: "8px",
+    display: "flex",
+    alignItems: "center",
+    height: "100%",
+    width: "auto"
   },
   link: {
     fontSize: 20,
@@ -40,29 +67,43 @@ const styles = theme => ({
   }
 });
 
-const History = ({ classes }) => {
-  const questions = all();
-  console.log(questions);
-  return (
-    <main className={classes.main}>
-      <CssBaseline />
-      <div style={{ width: "100%" }}>
-        <Box display="flex" justifyContent="center" className={classes.header}>
-          <div>
-            <Typography component="h1" variant="h5">
-              History &nbsp;
-            </Typography>
-          </div>
-          <div>
-            <RouterLink to="/history-add" className={classes.link}>
-              <AddCircleOutlineIcon className={classes.icon} />
-            </RouterLink>
-            <AddCircleOutlineIcon className={classes.icon} />
-          </div>
-        </Box>
-      </div>
-    </main>
-  );
-};
+class History extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      questions: [],
+      isLoading: true,
+      isError: false
+    };
+  }
+
+  componentDidMount = async () => {
+    await this.getQuestions();
+  };
+
+  getQuestions = async () => {
+    try {
+      const result = await all();
+      this.setState({
+        questions: result
+      });
+    } catch (error) {
+      this.setState({
+        error: true
+      });
+    }
+    this.setState({
+      isLoading: false
+    });
+  };
+
+  render() {
+    if (this.state.isLoading) {
+      return <div> Loading ...</div>;
+    }
+    return <div>{console.log(...this.state.questions)}</div>;
+  }
+}
 
 export default withStyles(styles)(History);
