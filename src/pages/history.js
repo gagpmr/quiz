@@ -1,5 +1,7 @@
 import withStyles from "@material-ui/core/styles/withStyles";
+import Typography from "@material-ui/core/Typography";
 import React from "react";
+import Loading from "../components/loading";
 import { all } from "../data/history";
 
 const styles = theme => ({
@@ -100,9 +102,25 @@ class History extends React.Component {
 
   render() {
     if (this.state.isLoading) {
-      return <div> Loading ...</div>;
+      return <Loading />;
     }
-    return <div>{console.log(...this.state.questions)}</div>;
+    return (
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          width: "100%",
+          position: "absolute",
+          borderWidth: "1px",
+          borderColor: "#DDDDDD",
+          borderStyle: "solid"
+        }}
+      >
+        <Typography component="h1" variant="h5" style={{ margin: "auto" }}>
+          History
+        </Typography>
+      </div>
+    );
   }
 }
 

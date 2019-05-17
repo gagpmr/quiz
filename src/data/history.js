@@ -48,6 +48,7 @@ export const all = async () => {
     });
   } catch (error) {
     console.log("App - Error - Get all error - History");
+    console.log(error);
   }
   return questions;
 };

@@ -73,7 +73,7 @@ const submitValues = async values => {
 };
 
 const HistoryAdd = props => {
-  const { handleSubmit, pristine, reset, submitting, classes } = props;
+  const { handleSubmit, classes } = props;
   return (
     <main className={classes.main}>
       <CssBaseline />
