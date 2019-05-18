@@ -1,6 +1,8 @@
 import withStyles from "@material-ui/core/styles/withStyles";
 import Typography from "@material-ui/core/Typography";
-import React from "react";
+import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
+import { Link } from "@reach/router";
+import React, { Fragment } from "react";
 import Loading from "../components/loading";
 import { all } from "../data/history";
 
@@ -105,21 +107,41 @@ class History extends React.Component {
       return <Loading />;
     }
     return (
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          width: "100%",
-          position: "absolute",
-          borderWidth: "1px",
-          borderColor: "#DDDDDD",
-          borderStyle: "solid"
-        }}
-      >
-        <Typography component="h1" variant="h5" style={{ margin: "auto" }}>
-          History
-        </Typography>
-      </div>
+      <Fragment>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            width: "100%",
+            position: "absolute",
+            borderWidth: "1px",
+            borderColor: "#DDDDDD",
+            borderStyle: "solid"
+          }}
+        >
+          <Typography component="h1" variant="h4" style={{ margin: "auto" }}>
+            History{" "}
+            <Link to="/history-add">
+              <AddCircleOutlineIcon className={this.props.classes.icon} />
+            </Link>
+          </Typography>
+        </div>
+        {this.state.questions.map(doc => (
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              width: "70%",
+              position: "absolute",
+              borderWidth: "1px",
+              borderColor: "#DDDDDD",
+              borderStyle: "solid"
+            }}
+          >
+            <Typography variant="h6">{console.log(doc)}</Typography>
+          </div>
+        ))}
+      </Fragment>
     );
   }
 }
