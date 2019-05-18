@@ -4,6 +4,7 @@ import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import { Link } from "@reach/router";
 import React, { Fragment } from "react";
 import Loading from "../components/loading";
+import Navbar from "../components/navbar";
 import { all } from "../data/history";
 
 const styles = theme => ({
@@ -108,6 +109,7 @@ class History extends React.Component {
     }
     return (
       <Fragment>
+        <Navbar />
         <div
           style={{
             display: "flex",
