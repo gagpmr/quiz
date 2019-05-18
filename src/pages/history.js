@@ -113,7 +113,6 @@ class History extends React.Component {
             display: "flex",
             alignItems: "center",
             width: "100%",
-            position: "absolute",
             borderWidth: "1px",
             borderColor: "#DDDDDD",
             borderStyle: "solid"
@@ -128,17 +127,33 @@ class History extends React.Component {
         </div>
         {this.state.questions.map(doc => (
           <div
+            key={doc._id}
             style={{
               display: "flex",
-              alignItems: "center",
-              width: "70%",
-              position: "absolute",
-              borderWidth: "1px",
-              borderColor: "#DDDDDD",
-              borderStyle: "solid"
+              flexWrap: "wrap",
+              flexDirection: "row"
             }}
           >
-            <Typography variant="h6">{console.log(doc)}</Typography>
+            <div
+              style={{
+                width: "70%",
+                borderWidth: "1px",
+                borderColor: "#DDDDDD",
+                borderStyle: "solid"
+              }}
+            >
+              <Typography variant="body1">{doc.question}</Typography>
+            </div>
+            <div
+              style={{
+                width: "10%",
+                borderWidth: "1px",
+                borderColor: "#DDDDDD",
+                borderStyle: "solid"
+              }}
+            >
+              <Typography variant="body1">{doc.answer}</Typography>
+            </div>
           </div>
         ))}
       </Fragment>
