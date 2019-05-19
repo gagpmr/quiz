@@ -1,6 +1,6 @@
 import withStyles from "@material-ui/core/styles/withStyles";
 import Typography from "@material-ui/core/Typography";
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import Loading from "../components/loading";
 import Navbar from "../components/navbar";
 import { all } from "../data/history";
@@ -70,78 +70,66 @@ const styles = theme => ({
   }
 });
 
-class History extends React.Component {
-  constructor(props) {
-    super(props);
+const History = () => {
+  const [questions, setQuestions] = useState([]);
+  const [isLoading, setLoading] = useState(true);
+  const [isError, setError] = useState(false);
 
-    this.state = {
-      questions: [],
-      isLoading: true,
-      isError: false
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await all();
+        setQuestions(result);
+      } catch (error) {
+        setError(true);
+      }
+      setLoading(false);
     };
+    fetchData();
+  }, []);
+
+  if (isLoading) {
+    return <Loading />;
   }
-
-  componentDidMount = async () => {
-    await this.getQuestions();
-  };
-
-  getQuestions = async () => {
-    try {
-      const result = await all();
-      this.setState({
-        questions: result
-      });
-    } catch (error) {
-      this.setState({
-        error: true
-      });
-    }
-    this.setState({
-      isLoading: false
-    });
-  };
-
-  render() {
-    if (this.state.isLoading) {
-      return <Loading />;
-    }
-    return (
-      <Fragment>
-        <Navbar />
-        {this.state.questions.map(doc => (
+  if (isError) {
+    return <div>Something went wrong</div>;
+  }
+  return (
+    <Fragment>
+      <Navbar />
+      {questions.map(doc => (
+        <div
+          key={doc._id}
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            flexDirection: "row"
+          }}
+        >
           <div
-            key={doc._id}
             style={{
-              display: "flex",
-              flexWrap: "wrap",
-              flexDirection: "row"
+              width: "70%",
+              borderWidth: "1px",
+              borderColor: "#DDDDDD",
+              borderStyle: "solid"
             }}
           >
-            <div
-              style={{
-                width: "70%",
-                borderWidth: "1px",
-                borderColor: "#DDDDDD",
-                borderStyle: "solid"
-              }}
-            >
-              <Typography variant="body1">{doc.question}</Typography>
-            </div>
-            <div
-              style={{
-                width: "10%",
-                borderWidth: "1px",
-                borderColor: "#DDDDDD",
-                borderStyle: "solid"
-              }}
-            >
-              <Typography variant="body1">{doc.answer}</Typography>
-            </div>
+            <Typography variant="body1">{doc.question}</Typography>
           </div>
-        ))}
-      </Fragment>
-    );
-  }
-}
+          <div
+            style={{
+              width: "10%",
+              borderWidth: "1px",
+              borderColor: "#DDDDDD",
+              borderStyle: "solid"
+            }}
+          >
+            <Typography variant="body1">{doc.answer}</Typography>
+          </div>
+        </div>
+      ))}
+    </Fragment>
+  );
+};
 
 export default withStyles(styles)(History);
