@@ -87,20 +87,16 @@ const History = () => {
         >
           <div
             style={{
-              width: "70%",
-              borderWidth: "1px",
-              borderColor: "#DDDDDD",
-              borderStyle: "solid"
+              ...borderRound,
+              width: "70%"
             }}
           >
             <Typography variant="body1">{doc.question}</Typography>
           </div>
           <div
             style={{
-              width: "10%",
-              borderWidth: "1px",
-              borderColor: "#DDDDDD",
-              borderStyle: "solid"
+              ...borderRound,
+              width: "10%"
             }}
           >
             <Typography variant="body1">{doc.answer}</Typography>
