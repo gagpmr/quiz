@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import { navigate } from "@reach/router";
 import React from "react";
 import { Field, reduxForm } from "redux-form";
+import Navbar from "../components/navbar";
 import { add } from "../data/history";
 
 const styles = theme => ({
@@ -78,6 +79,7 @@ const HistoryAdd = props => {
     <main className={classes.main}>
       <CssBaseline />
       <div style={{ width: "100%" }}>
+        <Navbar />
         <form onSubmit={handleSubmit(values => submitValues(values))}>
           <Box display="flex" flexWrap="wrap" flexDirection="row">
             <Box order={1} className={classes.qa}>

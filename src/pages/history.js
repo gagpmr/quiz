@@ -1,7 +1,5 @@
 import withStyles from "@material-ui/core/styles/withStyles";
 import Typography from "@material-ui/core/Typography";
-import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
-import { Link } from "@reach/router";
 import React, { Fragment } from "react";
 import Loading from "../components/loading";
 import Navbar from "../components/navbar";
@@ -110,23 +108,6 @@ class History extends React.Component {
     return (
       <Fragment>
         <Navbar />
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            width: "100%",
-            borderWidth: "1px",
-            borderColor: "#DDDDDD",
-            borderStyle: "solid"
-          }}
-        >
-          <Typography component="h1" variant="h4" style={{ margin: "auto" }}>
-            History{" "}
-            <Link to="/history-add">
-              <AddCircleOutlineIcon className={this.props.classes.icon} />
-            </Link>
-          </Typography>
-        </div>
         {this.state.questions.map(doc => (
           <div
             key={doc._id}

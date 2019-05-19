@@ -1,9 +1,9 @@
 import { unstable_Box as Box } from "@material-ui/core/Box";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import withStyles from "@material-ui/core/styles/withStyles";
-import Typography from "@material-ui/core/Typography";
 import { Link as RouterLink } from "@reach/router";
 import React from "react";
+import Navbar from "../components/navbar";
 
 const styles = theme => ({
   main: {
@@ -40,13 +40,7 @@ const Home = ({ classes }) => {
     <main className={classes.main}>
       <CssBaseline />
       <div style={{ width: "100%" }}>
-        <Box display="flex" justifyContent="center" className={classes.header}>
-          <div>
-            <Typography component="h1" variant="h5">
-              Home
-            </Typography>
-          </div>
-        </Box>
+        <Navbar />
         <Box display="flex">
           <div className={classes.item}>
             <RouterLink to="history" className={classes.link}>

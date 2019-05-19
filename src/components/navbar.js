@@ -1,3 +1,5 @@
+import Typography from "@material-ui/core/Typography";
+import { Link as RouterLink } from "@reach/router";
 import React from "react";
 import "../css/navbar.css";
 
@@ -5,19 +7,22 @@ const Navbar = () => {
   return (
     <ul>
       <li>
-        <a href="#home">Home</a>
-      </li>
-      <li>
-        <a href="#news">News</a>
+        <RouterLink to="/">
+          <Typography variant="body1" style={{ color: "white" }}>
+            Home
+          </Typography>
+        </RouterLink>
       </li>
       <li class="dropdown">
-        <a href="javascript:void(0)" class="dropbtn">
-          Dropdown
-        </a>
+        <RouterLink to="/history" className="dropbtn">
+          <Typography variant="body1" style={{ color: "white" }}>
+            History
+          </Typography>
+        </RouterLink>
         <div class="dropdown-content">
-          <a href="#">Link 1</a>
-          <a href="#">Link 2</a>
-          <a href="#">Link 3</a>
+          <RouterLink to="/history-add">History Add</RouterLink>
+          <RouterLink to="">Link 2</RouterLink>
+          <RouterLink to="">Link 3</RouterLink>
         </div>
       </li>
     </ul>
