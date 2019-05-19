@@ -4,60 +4,39 @@ import React, { Fragment, useEffect, useState } from "react";
 import Loading from "../components/loading";
 import Navbar from "../components/navbar";
 import { all } from "../data/history";
+import { borderRound, flexAlignCenter } from "../jss";
 
 const styles = theme => ({
   main: {
-    width: "auto",
-    display: "flex",
-    alignItems: "center"
+    ...flexAlignCenter,
+    width: "auto"
   },
   header: {
-    borderWidth: "1px",
-    borderColor: "#DDDDDD",
-    borderStyle: "solid",
-    borderRadius: "8px",
+    ...borderRound,
     padding: "0px"
   },
   item: {
-    borderWidth: "1px",
-    borderColor: "#DDDDDD",
-    borderStyle: "solid",
-    borderRadius: "8px",
+    ...borderRound,
     width: "100%",
     position: "absolute"
   },
   itemQuestion: {
-    width: "70%",
-    borderWidth: "1px",
-    borderColor: "#DDDDDD",
-    borderStyle: "solid",
-    borderRadius: "8px"
+    ...borderRound,
+    width: "70%"
   },
   itemAnswer: {
-    width: "10%",
-    borderWidth: "1px",
-    borderColor: "#DDDDDD",
-    borderStyle: "solid",
-    borderRadius: "8px",
-    display: "flex",
-    alignItems: "center"
+    ...borderRound,
+    ...flexAlignCenter,
+    width: "10%"
   },
   itemActions: {
-    width: "20%",
-    borderWidth: "1px",
-    borderColor: "#DDDDDD",
-    borderStyle: "solid",
-    borderRadius: "8px",
-    display: "flex",
-    alignItems: "center"
+    ...borderRound,
+    ...flexAlignCenter,
+    width: "20%"
   },
   itemOptions: {
-    borderWidth: "1px",
-    borderColor: "#DDDDDD",
-    borderStyle: "solid",
-    borderRadius: "8px",
-    display: "flex",
-    alignItems: "center",
+    ...borderRound,
+    ...flexAlignCenter,
     height: "100%",
     width: "auto"
   },
